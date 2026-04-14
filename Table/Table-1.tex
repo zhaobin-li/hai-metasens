@@ -1,0 +1,131 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Table 1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Table 1}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\section{Run all the .R code and manually type the results into the
+LaTeX table
+below}\label{run-all-the-.r-code-and-manually-type-the-results-into-the-latex-table-below}
+
+\begin{verbatim}
+## # A tibble: 7 x 3
+##   `Confidence Distribution`                `Range Tested` Max Absolute Error (~1
+##   <chr>                                    <chr>          <chr>                 
+## 1 "Logit-Normal($\\mu$, $\\sigma \\mid \\~ "$-10 \\leq \~ "0.01 (2\\%)"         
+## 2 "Beta($\\alpha$, $\\beta$)"              "$0.1 \\leq \~ "0.005 (0.9\\%)"      
+## 3 "Kumaraswamy($\\alpha$, $\\beta$)"       "$0.1 \\leq \~ "0.003 (0.3\\%)"      
+## 4 "Logit-Normal($\\mu$, $\\sigma \\mid \\~ "$-5 \\leq \\~ "0.07 (12\\%)"        
+## 5 "Uniform($min, max$)"                    "$0.1 \\leq m~ "0.02 (8\\%)"         
+## 6 "Mixture of Betas($p_1$, $\\alpha_1$, $~ "$0.2 < p_1 <~ "0.04 (12\\%)"        
+## 7 "3/5/10 equal-width bins"                "$0.5 \\leq d~ "0.01 (1.7\\%)/0.006 ~
+## # i abbreviated name: 1: `Max Absolute Error (Relative Error)`
+\end{verbatim}
+
+\begin{table}[!h]
+\centering
+\caption{\label{tab:sim_res}Maximum absolute and relative error between simulated and analytic Bayes-optimal accuracies for a range of confidence distributions. The SDT approximation achieves errors below 2\% for unimodal and discretized logit-normal distributions, and below 12\% for non-unimodal distributions. Standard errors are negligible with $10^5$ samples and were omitted.}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{lll}
+\toprule
+Confidence Distribution & Range Tested & Max Absolute Error (Relative Error)\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Unimodal}}\\
+\hspace{1em}Logit-Normal($\mu$, $\sigma \mid \mu \gg \sigma$) & $-10 \leq \mu \leq 10$, $0.1 \leq \sigma \leq 2.7$ & 0.01 (2\%)\\
+\hspace{1em}Beta($\alpha$, $\beta$) & $0.1 \leq \alpha, \beta \leq 5$ & 0.005 (0.9\%)\\
+\hspace{1em}Kumaraswamy($\alpha$, $\beta$) & $0.1 \leq \alpha, \beta \leq 5$ & 0.003 (0.3\%)\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Non-unimodal}}\\
+\hspace{1em}Logit-Normal($\mu$, $\sigma \mid \mu \leq \sigma$) & $-5 \leq \mu \leq 5$, $0.2 \leq \sigma \leq 5$ & 0.07 (12\%)\\
+\hspace{1em}Uniform($min, max$) & $0.1 \leq min < max \leq 0.9$ & 0.02 (8\%)\\
+\hspace{1em}Mixture of Betas($p_1$, $\alpha_1$, $\beta_1$, $\alpha_2$, $\beta_2$) & $0.2 < p_1 < 0.8$, $0.2 \leq \alpha_1, \beta_1, \alpha_2, \beta_2 \leq 10$ & 0.04 (12\%)\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Discretized equal-variance logit-normal}}\\
+\hspace{1em}3/5/10 equal-width bins & $0.5 \leq d_m, d_h \leq 3$ & 0.01 (1.7\%)/0.006 (1.3\%)/0.004 (0.8\%)\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\end{document}
